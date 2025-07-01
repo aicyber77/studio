@@ -14,12 +14,13 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { Logo } from "@/components/icons";
-import { LayoutDashboard, User, Sparkles, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, User, Sparkles, Map, Settings, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { user } from "@/lib/mock-data";
 
 const menuItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/map", label: "Map", icon: Map },
   { href: "/generate-route", label: "AI Route Planner", icon: Sparkles },
   { href: "/profile", label: "Profile", icon: User },
 ];
@@ -41,7 +42,7 @@ export function AppSidebar() {
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <SidebarMenuButton
+               <SidebarMenuButton
                 asChild
                 isActive={pathname === item.href}
                 tooltip={item.label}

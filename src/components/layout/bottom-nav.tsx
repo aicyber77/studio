@@ -3,13 +3,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, User, Sparkles } from 'lucide-react';
+import { LayoutDashboard, User, Sparkles, Map } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/map', label: 'Mapa', icon: Map },
   { href: '/generate-route', label: 'AI Planner', icon: Sparkles },
-  { href: '/profile', label: 'Profile', icon: User },
+  { href: '/profile', label: 'Perfil', icon: User },
 ];
 
 export function BottomNav() {

@@ -8,7 +8,9 @@ export const locations: Location[] = [
     category: 'parks',
     image: 'https://placehold.co/600x400.png',
     points: 10,
-    dataAiHint: 'barcelona viewpoint'
+    dataAiHint: 'barcelona viewpoint',
+    crowdLevel: 'high',
+    position: { top: '25%', left: '50%' }
   },
   {
     id: '2',
@@ -17,7 +19,9 @@ export const locations: Location[] = [
     category: 'restaurants',
     image: 'https://placehold.co/600x400.png',
     points: 15,
-    dataAiHint: 'garden cafe'
+    dataAiHint: 'garden cafe',
+    crowdLevel: 'low',
+    position: { top: '45%', left: '40%' }
   },
   {
     id: '3',
@@ -26,7 +30,9 @@ export const locations: Location[] = [
     category: 'museums',
     image: 'https://placehold.co/600x400.png',
     points: 10,
-    dataAiHint: 'chocolate museum'
+    dataAiHint: 'chocolate museum',
+    crowdLevel: 'medium',
+    position: { top: '60%', left: '60%' }
   },
   {
     id: '4',
@@ -35,7 +41,9 @@ export const locations: Location[] = [
     category: 'restaurants',
     image: 'https://placehold.co/600x400.png',
     points: 20,
-    dataAiHint: 'tapas street'
+    dataAiHint: 'tapas street',
+    crowdLevel: 'high',
+    position: { top: '75%', left: '30%' }
   },
   {
     id: '5',
@@ -44,7 +52,9 @@ export const locations: Location[] = [
     category: 'parks',
     image: 'https://placehold.co/600x400.png',
     points: 15,
-    dataAiHint: 'hedge maze'
+    dataAiHint: 'hedge maze',
+    crowdLevel: 'low',
+    position: { top: '10%', left: '20%' }
   },
   {
     id: '6',
@@ -53,7 +63,9 @@ export const locations: Location[] = [
     category: 'shops',
     image: 'https://placehold.co/600x400.png',
     points: 5,
-    dataAiHint: 'bookstore interior'
+    dataAiHint: 'bookstore interior',
+    crowdLevel: 'medium',
+    position: { top: '55%', left: '52%' }
   },
 ];
 

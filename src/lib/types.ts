@@ -1,4 +1,5 @@
 export type LocationCategory = 'restaurants' | 'parks' | 'museums' | 'shops';
+export type CrowdLevel = 'low' | 'medium' | 'high';
 
 export interface Location {
   id: string;
@@ -8,6 +9,11 @@ export interface Location {
   image: string;
   points: number;
   dataAiHint: string;
+  crowdLevel: CrowdLevel;
+  position: {
+      top: string;
+      left: string;
+  }
 }
 
 export interface UserProfile {
