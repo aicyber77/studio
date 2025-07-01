@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/layout/app-sidebar';
 import { SidebarInset } from '@/components/ui/sidebar';
+import { BottomNav } from '@/components/layout/bottom-nav';
 
 export const metadata: Metadata = {
   title: 'Explore BCN',
@@ -26,9 +27,10 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            {children}
+            <div className="pb-20 md:pb-0">{children}</div>
           </SidebarInset>
         </SidebarProvider>
+        <BottomNav />
         <Toaster />
       </body>
     </html>
