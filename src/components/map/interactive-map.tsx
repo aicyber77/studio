@@ -1,15 +1,17 @@
 'use client';
 
-import Image from 'next/image';
+import { useState } from 'react';
 import type { Location } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { MapPin } from 'lucide-react';
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  InfoWindow,
+  Pin,
+} from '@vis.gl/react-google-maps';
+import { Badge } from '../ui/badge';
+import { Leaf } from 'lucide-react';
 
 interface InteractiveMapProps {
   locations: Location[];
@@ -17,69 +19,95 @@ interface InteractiveMapProps {
 
 const crowdLevelConfig = {
   low: {
-    color: 'bg-green-500 border-green-700 text-green-500',
+    color: '#22c55e', // green-500
     label: 'Baja',
   },
   medium: {
-    color: 'bg-yellow-500 border-yellow-700 text-yellow-500',
+    color: '#eab308', // yellow-500
     label: 'Media',
   },
   high: {
-    color: 'bg-red-500 border-red-700 text-red-500',
+    color: '#ef4444', // red-500
     label: 'Alta',
   },
 };
 
 export function InteractiveMap({ locations }: InteractiveMapProps) {
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(
+    null
+  );
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+  if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
+    return (
+      <div className="flex items-center justify-center h-96 bg-muted rounded-lg aspect-video">
+        <p className="text-muted-foreground text-center p-4">
+          La clave de API de Google Maps no está configurada. Por favor, añádela a tu fichero .env para ver el mapa.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <TooltipProvider>
-      <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl border bg-card">
-        <Image
-          src="https://placehold.co/1200x800.png"
-          alt="Map of Barcelona"
-          layout="fill"
-          objectFit="cover"
-          data-ai-hint="barcelona map sketch"
-          className="opacity-20"
-        />
-        
-        {locations.map((location) => (
-          <Tooltip key={location.id}>
-            <TooltipTrigger asChild>
-              <div
-                className="absolute transform -translate-x-1/2 -translate-y-1/2"
-                style={{ top: location.position.top, left: location.position.left }}
-              >
-                <div
-                  className={cn(
-                    'w-5 h-5 rounded-full border-2 cursor-pointer transition-transform hover:scale-125 flex items-center justify-center animate-pulse',
-                    crowdLevelConfig[location.crowdLevel].color
-                  )}
-                >
-                   <div className={cn('w-2 h-2 rounded-full', crowdLevelConfig[location.crowdLevel].color)}></div>
-                   <span className="sr-only">{location.name}</span>
+    <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl border bg-card">
+      <APIProvider apiKey={apiKey}>
+        <Map
+          defaultCenter={{ lat: 41.3851, lng: 2.1734 }}
+          defaultZoom={13}
+          mapId="barcelona-map"
+          gestureHandling={'greedy'}
+          disableDefaultUI={true}
+        >
+          {locations.map((location) => (
+            <AdvancedMarker
+              key={location.id}
+              position={location.position}
+              onClick={() => setSelectedLocation(location)}
+            >
+              <Pin
+                background={crowdLevelConfig[location.crowdLevel].color}
+                borderColor={'#fff'}
+                glyphColor={'#fff'}
+              />
+            </AdvancedMarker>
+          ))}
+
+          {selectedLocation && (
+            <InfoWindow
+              position={selectedLocation.position}
+              onCloseClick={() => setSelectedLocation(null)}
+              minWidth={250}
+              headerDisabled
+            >
+              <div className="p-1 font-sans">
+                <h3 className="font-bold text-base mb-1">{selectedLocation.name}</h3>
+                <p className="text-sm text-muted-foreground line-clamp-2">{selectedLocation.description}</p>
+                <div className="flex justify-between items-center mt-3">
+                   <Badge variant="secondary" className="capitalize">
+                      Afluencia: {crowdLevelConfig[selectedLocation.crowdLevel].label}
+                    </Badge>
+                   <div className="flex items-center gap-1 text-primary">
+                      <Leaf className="w-4 h-4" />
+                      <span className="font-bold text-sm">{selectedLocation.points} Points</span>
+                    </div>
                 </div>
               </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p className="font-bold">{location.name}</p>
-              <p>Afluencia: <span className="font-medium capitalize">{crowdLevelConfig[location.crowdLevel].label}</span></p>
-            </TooltipContent>
-          </Tooltip>
-        ))}
+            </InfoWindow>
+          )}
+        </Map>
+      </APIProvider>
 
         <div className="absolute bottom-4 right-4 bg-card/80 backdrop-blur-sm p-3 rounded-lg shadow-lg border">
-            <h4 className="text-sm font-bold mb-2">Leyenda</h4>
+            <h4 className="text-sm font-bold mb-2">Leyenda de Afluencia</h4>
             <div className="space-y-1 text-xs">
                 {Object.entries(crowdLevelConfig).map(([level, {color, label}]) => (
                      <div key={level} className="flex items-center gap-2">
-                        <div className={cn("w-3 h-3 rounded-full border", color)}></div>
+                        <div style={{backgroundColor: color}} className="w-3 h-3 rounded-full border border-white/50"></div>
                         <span>{label}</span>
                     </div>
                 ))}
             </div>
         </div>
-      </div>
-    </TooltipProvider>
+    </div>
   );
 }

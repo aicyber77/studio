@@ -11,9 +11,9 @@ export interface Location {
   dataAiHint: string;
   crowdLevel: CrowdLevel;
   position: {
-      top: string;
-      left: string;
-  }
+    lat: number;
+    lng: number;
+  };
 }
 
 export interface UserProfile {
