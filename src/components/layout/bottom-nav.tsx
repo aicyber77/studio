@@ -7,9 +7,9 @@ import { LayoutDashboard, User, Sparkles, Map } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
-  { href: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/', label: 'Inicio', icon: LayoutDashboard },
   { href: '/map', label: 'Mapa', icon: Map },
-  { href: '/generate-route', label: 'AI Planner', icon: Sparkles },
+  { href: '/generate-route', label: 'Planificador IA', icon: Sparkles },
   { href: '/profile', label: 'Perfil', icon: User },
 ];
 

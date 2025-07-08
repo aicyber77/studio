@@ -25,17 +25,17 @@ export default function Home() {
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 md:py-20">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-6xl font-headline text-primary">
-              Discover Barcelona,
+              Descubre Barcelona,
               <br />
-              <span className="text-foreground">Sustainably.</span>
+              <span className="text-foreground">Sosteniblemente.</span>
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl">
-              Tired of the tourist traps? Let our AI craft a personalized journey for you, revealing the city's hidden gems.
+              ¿Cansado de las trampas para turistas? Deja que nuestra IA cree un viaje personalizado para ti, revelando las joyas ocultas de la ciudad.
             </p>
             <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
               <Link href="/generate-route">
                 <Sparkles className="mr-2 h-5 w-5" />
-                Create My Route
+                Crear Mi Ruta
               </Link>
             </Button>
           </div>
@@ -90,8 +90,8 @@ export default function Home() {
       <section className="py-16 bg-background">
         <div className="container mx-auto text-center">
           <PageHeader
-            title="Your Perfect Trip in 3 Easy Steps"
-            description="Let AI be your guide to an unforgettable, sustainable journey."
+            title="Tu Viaje Perfecto en 3 Sencillos Pasos"
+            description="Deja que la IA sea tu guía para un viaje inolvidable y sostenible."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 max-w-5xl mx-auto">
             <Card className="text-center bg-card border-none shadow-lg transform transition-transform hover:-translate-y-2">
@@ -99,10 +99,10 @@ export default function Home() {
                 <div className="mx-auto bg-primary/10 text-primary p-4 rounded-full w-fit">
                   <Lightbulb className="w-8 h-8" />
                 </div>
-                <CardTitle className="font-headline text-xl mt-4">1. Share Your Vibe</CardTitle>
+                <CardTitle className="font-headline text-xl mt-4">1. Comparte Tu Estilo</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Tell us what you love—be it art, food, or quiet corners. Set your pace and crowd tolerance.</p>
+                <p className="text-muted-foreground">Dinos qué te gusta: arte, comida o rincones tranquilos. Define tu ritmo y tolerancia a las multitudes.</p>
               </CardContent>
             </Card>
             <Card className="text-center bg-card border-none shadow-lg transform transition-transform hover:-translate-y-2">
@@ -110,10 +110,10 @@ export default function Home() {
                 <div className="mx-auto bg-primary/10 text-primary p-4 rounded-full w-fit">
                   <Route className="w-8 h-8" />
                 </div>
-                <CardTitle className="font-headline text-xl mt-4">2. Get Your Custom Route</CardTitle>
+                <CardTitle className="font-headline text-xl mt-4">2. Obtén Tu Ruta Personalizada</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Our AI crafts a unique itinerary for you, balancing your interests with hidden gems and sustainable spots.</p>
+                <p className="text-muted-foreground">Nuestra IA crea un itinerario único para ti, equilibrando tus intereses con joyas ocultas y lugares sostenibles.</p>
               </CardContent>
             </Card>
             <Card className="text-center bg-card border-none shadow-lg transform transition-transform hover:-translate-y-2">
@@ -121,10 +121,10 @@ export default function Home() {
                 <div className="mx-auto bg-primary/10 text-primary p-4 rounded-full w-fit">
                   <Sparkles className="w-8 h-8" />
                 </div>
-                <CardTitle className="font-headline text-xl mt-4">3. Explore & Enjoy</CardTitle>
+                <CardTitle className="font-headline text-xl mt-4">3. Explora y Disfruta</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">Discover Barcelona like a local. Collect sustainability points and enjoy a trip that’s truly yours.</p>
+                <p className="text-muted-foreground">Descubre Barcelona como un local. Acumula puntos de sostenibilidad y disfruta de un viaje que es verdaderamente tuyo.</p>
               </CardContent>
             </Card>
           </div>
@@ -134,8 +134,8 @@ export default function Home() {
       {/* Hidden Gems Section */}
       <main className="container mx-auto p-4 md:p-8 py-16">
         <PageHeader 
-          title="Featured Hidden Gems"
-          description="Local favorites waiting to be discovered."
+          title="Joyas Ocultas Destacadas"
+          description="Favoritos locales esperando a ser descubiertos."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">

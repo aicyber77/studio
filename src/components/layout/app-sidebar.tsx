@@ -19,10 +19,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { user } from "@/lib/mock-data";
 
 const menuItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/map", label: "Map", icon: Map },
-  { href: "/generate-route", label: "AI Route Planner", icon: Sparkles },
-  { href: "/profile", label: "Profile", icon: User },
+  { href: "/", label: "Inicio", icon: LayoutDashboard },
+  { href: "/map", label: "Mapa", icon: Map },
+  { href: "/generate-route", label: "Planificador IA", icon: Sparkles },
+  { href: "/profile", label: "Perfil", icon: User },
 ];
 
 export function AppSidebar() {

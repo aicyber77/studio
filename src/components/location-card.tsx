@@ -35,11 +35,11 @@ export function LocationCard({ location }: LocationCardProps) {
       <CardFooter className="flex justify-between items-center p-4 bg-muted/50">
         <div className="flex items-center gap-2 text-primary">
           <Leaf className="w-5 h-5" />
-          <span className="font-bold text-sm">{location.points} Points</span>
+          <span className="font-bold text-sm">{location.points} Puntos</span>
         </div>
         <Button size="sm" variant="outline">
           <PlusCircle className="mr-2 h-4 w-4" />
-          Add to route
+          Añadir a la ruta
         </Button>
       </CardFooter>
     </Card>

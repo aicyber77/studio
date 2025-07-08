@@ -9,8 +9,8 @@ import { Award, Leaf, MapPin, UserCheck } from 'lucide-react';
 import { SustainabilityChart } from '@/components/profile/sustainability-chart';
 
 export const metadata = {
-  title: 'Your Profile | Explore BCN',
-  description: 'View your preferences, visit history, and sustainability score.',
+  title: 'Tu Perfil | Explore BCN',
+  description: 'Consulta tus preferencias, historial de visitas y puntuación de sostenibilidad.',
 };
 
 export default function ProfilePage() {
@@ -37,8 +37,8 @@ export default function ProfilePage() {
   return (
     <div className="container mx-auto p-4 md:p-8">
       <PageHeader
-        title="Your Profile"
-        description="Your sustainable journey through Barcelona."
+        title="Tu Perfil"
+        description="Tu viaje sostenible por Barcelona."
       />
 
       <div className="grid gap-8 md:grid-cols-3">
@@ -59,20 +59,20 @@ export default function ProfilePage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 font-headline">
-                <UserCheck className="w-5 h-5" /> Your Preferences
+                <UserCheck className="w-5 h-5" /> Tus Preferencias
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Interests</span>
+                <span className="text-muted-foreground">Intereses</span>
                 <span className="font-medium capitalize">{user.preferences.interests}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Crowd Tolerance</span>
+                <span className="text-muted-foreground">Tolerancia a Multitudes</span>
                 <span className="font-medium capitalize">{user.preferences.crowdTolerance}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Sustainability Focus</span>
+                <span className="text-muted-foreground">Enfoque Sostenible</span>
                 <span className="font-medium">
                   {user.preferences.sustainabilityFocused ? (
                     <Leaf className="w-5 h-5 text-green-500" />
@@ -89,18 +89,18 @@ export default function ProfilePage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 font-headline">
-                <Award className="w-5 h-5" /> Sustainability Score
+                <Award className="w-5 h-5" /> Puntuación de Sostenibilidad
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
                 <p className="text-6xl font-bold text-primary">{user.points}</p>
-                <p className="text-muted-foreground">Total Points Earned</p>
+                <p className="text-muted-foreground">Puntos Totales Obtenidos</p>
               </div>
               <div>
-                <p className="text-sm font-medium mb-1">Level {user.level}: Eco-Explorer</p>
+                <p className="text-sm font-medium mb-1">Nivel {user.level}: Eco-Explorador</p>
                 <Progress value={(user.points % 200) / 2} />
-                <p className="text-xs text-muted-foreground mt-1 text-right">{(200 - user.points % 200)} points to next level</p>
+                <p className="text-xs text-muted-foreground mt-1 text-right">{(200 - user.points % 200)} puntos para el siguiente nivel</p>
               </div>
               <SustainabilityChart data={chartData} />
             </CardContent>
@@ -109,20 +109,20 @@ export default function ProfilePage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 font-headline">
-                <MapPin className="w-5 h-5" /> Visit History
+                <MapPin className="w-5 h-5" /> Historial de Visitas
               </CardTitle>
               <CardDescription>
-                The sustainable places you've explored.
+                Los lugares sostenibles que has explorado.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Location</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead className="text-right">Points</TableHead>
+                    <TableHead>Lugar</TableHead>
+                    <TableHead>Categoría</TableHead>
+                    <TableHead>Fecha</TableHead>
+                    <TableHead className="text-right">Puntos</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -135,7 +135,7 @@ export default function ProfilePage() {
                     </TableRow>
                   )) : (
                     <TableRow>
-                      <TableCell colSpan={4} className="text-center text-muted-foreground">No visits yet. Go explore!</TableCell>
+                      <TableCell colSpan={4} className="text-center text-muted-foreground">Aún no hay visitas. ¡Sal a explorar!</TableCell>
                     </TableRow>
                   )}
                 </TableBody>

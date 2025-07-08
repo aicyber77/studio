@@ -88,7 +88,7 @@ export function InteractiveMap({ locations }: InteractiveMapProps) {
                     </Badge>
                    <div className="flex items-center gap-1 text-primary">
                       <Leaf className="w-4 h-4" />
-                      <span className="font-bold text-sm">{selectedLocation.points} Points</span>
+                      <span className="font-bold text-sm">{selectedLocation.points} Puntos</span>
                     </div>
                 </div>
               </div>

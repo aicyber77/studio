@@ -19,46 +19,46 @@ export function RouteForm({ formAction, formState }: RouteFormProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-headline text-2xl">Plan Your Trip</CardTitle>
-        <CardDescription>Tell us your preferences, and we'll handle the rest.</CardDescription>
+        <CardTitle className="font-headline text-2xl">Planifica Tu Viaje</CardTitle>
+        <CardDescription>Dinos tus preferencias y nosotros nos encargamos del resto.</CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="interests">What are your interests?</Label>
-            <Input id="interests" name="interests" placeholder="e.g., museums, parks, restaurants" required />
+            <Label htmlFor="interests">¿Cuáles son tus intereses?</Label>
+            <Input id="interests" name="interests" placeholder="ej: museos, parques, restaurantes" required />
             {formState.issues && <p className="text-sm text-destructive">{formState.issues.join(', ')}</p>}
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="preferences">Any specific preferences?</Label>
-            <Textarea id="preferences" name="preferences" placeholder="e.g., quiet places, historical sites, modern art" required />
+            <Label htmlFor="preferences">¿Alguna preferencia específica?</Label>
+            <Textarea id="preferences" name="preferences" placeholder="ej: lugares tranquilos, sitios históricos, arte moderno" required />
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="crowd-tolerance">Crowd Tolerance</Label>
+              <Label htmlFor="crowd-tolerance">Tolerancia a las multitudes</Label>
               <Select name="crowdTolerance" defaultValue="low" required>
                 <SelectTrigger id="crowd-tolerance">
-                  <SelectValue placeholder="Select tolerance" />
+                  <SelectValue placeholder="Selecciona tu tolerancia" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="low">Low</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="low">Baja</SelectItem>
+                  <SelectItem value="medium">Media</SelectItem>
+                  <SelectItem value="high">Alta</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="start-time">Start Time</Label>
+              <Label htmlFor="start-time">Hora de Inicio</Label>
               <Input id="start-time" name="startTime" type="time" defaultValue="09:00" required />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="duration">Desired Duration</Label>
-            <Input id="duration" name="duration" placeholder="e.g., 2-3 hours, half a day" required />
+            <Label htmlFor="duration">Duración Deseada</Label>
+            <Input id="duration" name="duration" placeholder="ej: 2-3 horas, medio día" required />
           </div>
 
           <SubmitButton />
@@ -76,12 +76,12 @@ function SubmitButton() {
             {pending ? (
                 <>
                     <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                    Generating...
+                    Generando...
                 </>
             ) : (
                 <>
                     <Wand2 className="mr-2 h-4 w-4" />
-                    Generate Route
+                    Generar Ruta
                 </>
             )}
         </Button>

@@ -12,7 +12,7 @@ interface SustainabilityChartProps {
 
 const chartConfig = {
   points: {
-    label: 'Points',
+    label: 'Puntos',
     color: 'hsl(var(--primary))',
   },
 } satisfies ChartConfig;
@@ -24,7 +24,7 @@ export function SustainabilityChart({ data }: SustainabilityChartProps) {
 
   return (
     <div className="mt-6">
-       <h4 className="font-semibold mb-2 text-muted-foreground">Points Earned Over Time</h4>
+       <h4 className="font-semibold mb-2 text-muted-foreground">Puntos Obtenidos a lo Largo del Tiempo</h4>
        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
         <BarChart accessibilityLayer data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <CartesianGrid vertical={false} />
