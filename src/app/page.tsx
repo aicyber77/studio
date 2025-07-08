@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function Home() {
-  const hiddenGems = locations.slice(0, 6);
+  const hiddenGems = locations.filter(location => location.isFeatured);
 
   return (
     <div className="flex flex-col">
@@ -50,8 +50,8 @@ export default function Home() {
                     <Image
                       src="https://placehold.co/600x400.png"
                       alt="Scenic view of Barcelona"
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      className="object-cover"
                       data-ai-hint="barcelona sagrada familia"
                     />
                   </div>
@@ -61,8 +61,8 @@ export default function Home() {
                     <Image
                       src="https://placehold.co/600x400.png"
                       alt="Charming street in Gothic Quarter"
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      className="object-cover"
                       data-ai-hint="barcelona gothic quarter"
                     />
                   </div>
@@ -72,8 +72,8 @@ export default function Home() {
                     <Image
                       src="https://placehold.co/600x400.png"
                       alt="Park Guell mosaic"
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      className="object-cover"
                       data-ai-hint="barcelona park guell"
                     />
                   </div>

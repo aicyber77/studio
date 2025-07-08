@@ -14,19 +14,25 @@ export const metadata = {
 };
 
 export default function ProfilePage() {
-  const visitHistoryWithDetails = user.visitHistory.map(visit => {
-    const locationDetails = locations.find(loc => loc.id === visit.locationId);
+    const visitHistory = user.activityHistory.filter(
+    (activity) => activity.activityType === 'visit'
+  );
+
+  const visitHistoryWithDetails = visitHistory.map(activity => {
+    const locationDetails = locations.find(loc => loc.id === activity.detail.id);
     return {
-      ...visit,
+      ...activity,
       category: locationDetails?.category || 'N/A',
-      points: locationDetails?.points || 0,
     };
   });
 
-  const chartData = visitHistoryWithDetails.map(visit => ({
-    date: format(new Date(visit.date), 'MMM d'),
-    points: visit.points,
-  }));
+  const chartData = user.activityHistory
+    .filter(activity => activity.points && activity.points > 0)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .map(activity => ({
+      date: format(new Date(activity.date), 'MMM d'),
+      points: activity.points!,
+    }));
 
   return (
     <div className="container mx-auto p-4 md:p-8">
@@ -40,7 +46,7 @@ export default function ProfilePage() {
           <Card>
             <CardHeader className="flex flex-row items-center gap-4">
               <Avatar className="h-16 w-16">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={user.avatarUrl} alt={user.name} />
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
@@ -88,13 +94,13 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="text-center">
-                <p className="text-6xl font-bold text-primary">{user.sustainabilityPoints}</p>
+                <p className="text-6xl font-bold text-primary">{user.points}</p>
                 <p className="text-muted-foreground">Total Points Earned</p>
               </div>
               <div>
-                <p className="text-sm font-medium mb-1">Level 2: Eco-Explorer</p>
-                <Progress value={(user.sustainabilityPoints % 200) / 2} />
-                <p className="text-xs text-muted-foreground mt-1 text-right">{(200 - user.sustainabilityPoints % 200)} points to next level</p>
+                <p className="text-sm font-medium mb-1">Level {user.level}: Eco-Explorer</p>
+                <Progress value={(user.points % 200) / 2} />
+                <p className="text-xs text-muted-foreground mt-1 text-right">{(200 - user.points % 200)} points to next level</p>
               </div>
               <SustainabilityChart data={chartData} />
             </CardContent>
@@ -120,12 +126,12 @@ export default function ProfilePage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {visitHistoryWithDetails.length > 0 ? visitHistoryWithDetails.map((visit) => (
-                    <TableRow key={visit.locationId}>
-                      <TableCell className="font-medium">{visit.locationName}</TableCell>
-                      <TableCell className="capitalize">{visit.category}</TableCell>
-                      <TableCell>{format(new Date(visit.date), 'PPP')}</TableCell>
-                      <TableCell className="text-right font-bold text-primary">+{visit.points}</TableCell>
+                  {visitHistoryWithDetails.length > 0 ? visitHistoryWithDetails.map((activity) => (
+                    <TableRow key={activity.id}>
+                      <TableCell className="font-medium">{activity.detail.name}</TableCell>
+                      <TableCell className="capitalize">{activity.category}</TableCell>
+                      <TableCell>{format(new Date(activity.date), 'PPP')}</TableCell>
+                      <TableCell className="text-right font-bold text-primary">+{activity.points}</TableCell>
                     </TableRow>
                   )) : (
                     <TableRow>

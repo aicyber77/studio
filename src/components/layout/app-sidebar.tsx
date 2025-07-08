@@ -42,7 +42,7 @@ export function AppSidebar() {
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-               <SidebarMenuButton
+              <SidebarMenuButton
                 asChild
                 isActive={pathname === item.href}
                 tooltip={item.label}
@@ -60,7 +60,7 @@ export function AppSidebar() {
         <SidebarSeparator />
         <div className="flex items-center gap-3 p-2 group-data-[collapsible=icon]:justify-center">
            <Avatar className="h-9 w-9">
-              <AvatarImage src={user.avatar} alt={user.name} />
+              <AvatarImage src={user.avatarUrl} alt={user.name} />
               <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col overflow-hidden group-data-[collapsible=icon]:hidden">

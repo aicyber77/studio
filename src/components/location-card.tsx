@@ -15,11 +15,10 @@ export function LocationCard({ location }: LocationCardProps) {
       <CardHeader className="p-0">
         <div className="relative h-48 w-full">
           <Image
-            src={location.image}
+            src={location.imageUrl}
             alt={location.name}
-            layout="fill"
-            objectFit="cover"
-            className="transition-transform duration-300 group-hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
             data-ai-hint={location.dataAiHint}
           />
           <div className="absolute top-2 right-2">
