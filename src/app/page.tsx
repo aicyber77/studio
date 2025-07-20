@@ -1,8 +1,11 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Lightbulb, Route, Sparkles } from 'lucide-react';
+import { Lightbulb, Route, Sparkles, Search } from 'lucide-react';
 import { LocationCard } from '@/components/location-card';
-import { locations } from '@/lib/mock-data';
+import { locations as allLocations } from '@/lib/mock-data';
 import type { Location } from '@/lib/types';
 import { PageHeader } from '@/components/layout/header';
 import {
@@ -14,9 +17,26 @@ import {
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Input } from '@/components/ui/input';
 
 export default function Home() {
-  const hiddenGems = locations.filter(location => location.isFeatured);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredLocations, setFilteredLocations] = useState<Location[]>([]);
+
+  const hiddenGems = allLocations.filter(location => location.isFeatured);
+
+  useEffect(() => {
+    if (searchTerm.trim() === '') {
+      setFilteredLocations(hiddenGems);
+    } else {
+      const lowercasedFilter = searchTerm.toLowerCase();
+      const filtered = allLocations.filter(location =>
+        location.name.toLowerCase().includes(lowercasedFilter)
+      );
+      setFilteredLocations(filtered);
+    }
+  }, [searchTerm, hiddenGems]);
+
 
   return (
     <div className="flex flex-col">
@@ -131,17 +151,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hidden Gems Section */}
+      {/* Locations Section */}
       <main className="container mx-auto p-4 md:p-8 py-16">
         <PageHeader 
-          title="Joyas Ocultas Destacadas"
-          description="Favoritos locales esperando a ser descubiertos."
-        />
+          title={searchTerm ? 'Resultados de la Búsqueda' : 'Joyas Ocultas Destacadas'}
+          description={searchTerm ? `Mostrando lugares que coinciden con "${searchTerm}"` : 'Favoritos locales esperando a ser descubiertos.'}
+        >
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Buscar lugares..."
+              className="pl-10 w-full md:w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </PageHeader>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-          {hiddenGems.map((location: Location) => (
-            <LocationCard key={location.id} location={location} />
-          ))}
+          {filteredLocations.length > 0 ? (
+            filteredLocations.map((location: Location) => (
+              <LocationCard key={location.id} location={location} />
+            ))
+          ) : (
+             <div className="col-span-full text-center py-16">
+                <p className="text-muted-foreground">No se encontraron lugares. Intenta con otra búsqueda.</p>
+             </div>
+          )}
         </div>
       </main>
     </div>
