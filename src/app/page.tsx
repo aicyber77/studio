@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lightbulb, Route, Sparkles, Search } from 'lucide-react';
@@ -19,11 +19,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 
+const hiddenGems = allLocations.filter(location => location.isFeatured);
+
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredLocations, setFilteredLocations] = useState<Location[]>([]);
-
-  const hiddenGems = allLocations.filter(location => location.isFeatured);
+  const [filteredLocations, setFilteredLocations] = useState<Location[]>(hiddenGems);
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -35,7 +35,7 @@ export default function Home() {
       );
       setFilteredLocations(filtered);
     }
-  }, [searchTerm, hiddenGems]);
+  }, [searchTerm]);
 
 
   return (
